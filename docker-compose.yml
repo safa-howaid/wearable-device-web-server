@@ -1,0 +1,11 @@
+version: "1"
+
+services:
+  express-app:
+    build: "."
+    env_file:
+      - "client/.env"
+    tty: true
+    stdin_open: true
+    ports:
+      - "8000:8000"
