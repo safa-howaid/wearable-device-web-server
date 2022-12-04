@@ -21,6 +21,10 @@ app.get("/api/", (req, res) => {
   });
 });
 
+// Add user router
+const userRouter = require("./routes/user.routes");
+app.use("/api", userRouter);
+
 // Serve static files
 app.use(express.static(path.join(__dirname, "client", "build")));
 
