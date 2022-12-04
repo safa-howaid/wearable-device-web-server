@@ -25,6 +25,10 @@ app.get("/api/", (req, res) => {
 const userRouter = require("./routes/user.routes");
 app.use("/api", userRouter);
 
+// Add user biometrics router
+const userBiometricsRouter = require("./routes/user.biometrics.routes");
+app.use("/api", userBiometricsRouter);
+
 // Serve static files
 app.use(express.static(path.join(__dirname, "client", "build")));
 
