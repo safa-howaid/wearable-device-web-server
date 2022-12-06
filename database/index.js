@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
+require("dotenv").config({ path: require("find-config")(".env") });
 
 const DB_NAME = "wearableDB";
 const uri =
