@@ -7,6 +7,7 @@ const HeartRate = require("./heartRate");
 const SleepTime = require("./sleepTime");
 const StepCount = require("./stepCount");
 const Device = require("./device");
+const GpsLocation = require("./gpsLocation");
 
 const User = new Schema(
   {
@@ -36,6 +37,7 @@ const User = new Schema(
     heartRate: [HeartRate.schema],
     sleepTime: [SleepTime.schema],
     stepCount: [StepCount.schema],
+    gpsLocation: [GpsLocation.schema],
   },
   { timestamps: true }
 );

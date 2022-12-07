@@ -5,6 +5,7 @@ const BodyTemperature = require("../models/bodyTemperature");
 const CaloriesBurned = require("../models/caloriesBurned");
 const SleepTime = require("../models/sleepTime");
 const StepCount = require("../models/stepCount");
+const GpsLocation = require("../models/gpsLocation");
 
 const addHeartRate = async (req, res) => {
   const body = req.body;
@@ -17,7 +18,7 @@ const addHeartRate = async (req, res) => {
   }
 
   const heartRate = new HeartRate(body);
-  if (!heartRate) {
+  if (!heartRate || heartRate.validateSync()) {
     return res.status(400).json({ success: false, error: "Unable to create heartrate data with given body" });
   }
   await User.findOneAndUpdate(
@@ -31,23 +32,27 @@ const addHeartRate = async (req, res) => {
       },
     }
   ).then((user) => {
-    user
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          success: true,
-          id: user._id,
-          data: body,
-          message: "Heart rate data added!",
+    if (!user) {
+      return res.status(404).json({ success: false, error: `User not found` });
+    } else {
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user._id,
+            data: body,
+            message: "Heart rate data added!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            success: false,
+            error: error,
+            message: "Heart rate data not added!",
+          });
         });
-      })
-      .catch((error) => {
-        return res.status(400).json({
-          success: false,
-          error: error,
-          message: "Heart rate data not added!",
-        });
-      });
+    }
   });
 };
 
@@ -81,7 +86,7 @@ const addBloodPressure = async (req, res) => {
   }
 
   const bloodPressure = new BloodPressure(body);
-  if (!bloodPressure) {
+  if (!bloodPressure || bloodPressure.validateSync()) {
     return res.status(400).json({ success: false, error: "Unable to create blood pressure data with given body" });
   }
   await User.findOneAndUpdate(
@@ -95,23 +100,27 @@ const addBloodPressure = async (req, res) => {
       },
     }
   ).then((user) => {
-    user
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          success: true,
-          id: user._id,
-          data: body,
-          message: "Blood Pressure data added!",
+    if (!user) {
+      return res.status(404).json({ success: false, error: `User not found` });
+    } else {
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user._id,
+            data: body,
+            message: "Blood Pressure data added!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            success: false,
+            error: error,
+            message: "Blood Pressure data not added!",
+          });
         });
-      })
-      .catch((error) => {
-        return res.status(400).json({
-          success: false,
-          error: error,
-          message: "Blood Pressure data not added!",
-        });
-      });
+    }
   });
 };
 
@@ -145,7 +154,7 @@ const addBodyTemperature = async (req, res) => {
   }
 
   const bodyTemperature = new BodyTemperature(body);
-  if (!bodyTemperature) {
+  if (!bodyTemperature || bodyTemperature.validateSync()) {
     return res.status(400).json({ success: false, error: "Unable to create body temperature with given body" });
   }
   await User.findOneAndUpdate(
@@ -159,23 +168,27 @@ const addBodyTemperature = async (req, res) => {
       },
     }
   ).then((user) => {
-    user
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          success: true,
-          id: user._id,
-          data: body,
-          message: "Body temperature data added!",
+    if (!user) {
+      return res.status(404).json({ success: false, error: `User not found` });
+    } else {
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user._id,
+            data: body,
+            message: "Body temperature data added!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            success: false,
+            error: error,
+            message: "Body temperature data not added!",
+          });
         });
-      })
-      .catch((error) => {
-        return res.status(400).json({
-          success: false,
-          error: error,
-          message: "Body temperature data not added!",
-        });
-      });
+    }
   });
 };
 
@@ -209,7 +222,7 @@ const addCaloriesBurned = async (req, res) => {
   }
 
   const caloriesBurned = new CaloriesBurned(body);
-  if (!caloriesBurned) {
+  if (!caloriesBurned || caloriesBurned.validateSync()) {
     return res.status(400).json({ success: false, error: "Unable to create calories burned data with given body" });
   }
   await User.findOneAndUpdate(
@@ -223,23 +236,27 @@ const addCaloriesBurned = async (req, res) => {
       },
     }
   ).then((user) => {
-    user
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          success: true,
-          id: user._id,
-          data: body,
-          message: "Calories burned data added!",
+    if (!user) {
+      return res.status(404).json({ success: false, error: `User not found` });
+    } else {
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user._id,
+            data: body,
+            message: "Calories burned data added!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            success: false,
+            error: error,
+            message: "Calories burned data not added!",
+          });
         });
-      })
-      .catch((error) => {
-        return res.status(400).json({
-          success: false,
-          error: error,
-          message: "Calories burned data not added!",
-        });
-      });
+    }
   });
 };
 
@@ -273,7 +290,7 @@ const addSleepTime = async (req, res) => {
   }
 
   const sleepTime = new SleepTime(body);
-  if (!sleepTime) {
+  if (!sleepTime || sleepTime.validateSync()) {
     return res.status(400).json({ success: false, error: "Unable to create sleep time data with given body" });
   }
   await User.findOneAndUpdate(
@@ -287,23 +304,27 @@ const addSleepTime = async (req, res) => {
       },
     }
   ).then((user) => {
-    user
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          success: true,
-          id: user._id,
-          data: body,
-          message: "Sleep time data added!",
+    if (!user) {
+      return res.status(404).json({ success: false, error: `User not found` });
+    } else {
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user._id,
+            data: body,
+            message: "Sleep time data added!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            success: false,
+            error: error,
+            message: "Sleep time data not added!",
+          });
         });
-      })
-      .catch((error) => {
-        return res.status(400).json({
-          success: false,
-          error: error,
-          message: "Sleep time data not added!",
-        });
-      });
+    }
   });
 };
 
@@ -337,7 +358,7 @@ const addStepCount = async (req, res) => {
   }
 
   const stepCount = new StepCount(body);
-  if (!stepCount) {
+  if (!stepCount || stepCount.validateSync()) {
     return res.status(400).json({ success: false, error: "Unable to create step count data with given body" });
   }
   await User.findOneAndUpdate(
@@ -351,23 +372,27 @@ const addStepCount = async (req, res) => {
       },
     }
   ).then((user) => {
-    user
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          success: true,
-          id: user._id,
-          data: body,
-          message: "Step count data added!",
+    if (!user) {
+      return res.status(404).json({ success: false, error: `User not found` });
+    } else {
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user._id,
+            data: body,
+            message: "Step count data added!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            success: false,
+            error: error,
+            message: "Step count data not added!",
+          });
         });
-      })
-      .catch((error) => {
-        return res.status(400).json({
-          success: false,
-          error: error,
-          message: "Step count data not added!",
-        });
-      });
+    }
   });
 };
 
@@ -390,6 +415,75 @@ const getStepCount = async (req, res) => {
     });
 };
 
+const addGpsLocation = async (req, res) => {
+  const body = req.body;
+
+  if (Object.keys(body).length === 0) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a body",
+    });
+  }
+
+  const gpsLocation = new GpsLocation(body);
+  if (!gpsLocation || gpsLocation.validateSync()) {
+    return res.status(400).json({ success: false, error: "Unable to create gps location data point with given body" });
+  }
+
+  await User.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      $push: {
+        gpsLocation: {
+          $each: [gpsLocation],
+          $sort: { timestamp: -1 },
+        },
+      },
+    }
+  ).then((user) => {
+    if (!user) {
+      return res.status(404).json({ success: false, error: `User not found` });
+    } else {
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user._id,
+            data: body,
+            message: "Gps location data added!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            success: false,
+            error: error,
+            message: "Gps location data not added!",
+          });
+        });
+    }
+  });
+};
+
+const getGpsLocation = async (req, res) => {
+  let isLimited = req.query.hasOwnProperty("limit");
+
+  await User.findById(req.params.id)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ success: false, error: `User not found` });
+      }
+      if (isLimited) {
+        let limit = Number(req.query.limit);
+        return res.status(200).json({ success: true, data: user.gpsLocation.slice(0, limit) });
+      }
+      return res.status(200).json({ success: true, data: user.gpsLocation });
+    })
+    .catch((err) => {
+      return res.status(400).json({ success: false, error: err });
+    });
+};
+
 module.exports = {
   addHeartRate,
   getHeartRate,
@@ -403,4 +497,6 @@ module.exports = {
   getSleepTime,
   addStepCount,
   getStepCount,
+  addGpsLocation,
+  getGpsLocation,
 };

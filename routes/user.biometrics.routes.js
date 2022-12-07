@@ -39,4 +39,10 @@ router.get("/users/:id/biometrics/sleep-time", biometricsController.getSleepTime
 // POST /api/users/:id/biometrics/sleep-time
 router.post("/users/:id/biometrics/sleep-time", biometricsController.addSleepTime);
 
+// GET /api/users/:id/biometrics/gps-location
+router.get("/users/:id/biometrics/gps-location", biometricsController.getGpsLocation);
+
+// POST /api/users/:id/biometrics/gps-location
+router.post("/users/:id/biometrics/gps-location", biometricsController.addGpsLocation);
+
 module.exports = router;
