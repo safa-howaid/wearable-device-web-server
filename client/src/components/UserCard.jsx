@@ -34,7 +34,7 @@ class UserCard extends Component {
             <li className="list-group-item">Date of birth: {this.props.user.dateOfBirth}</li>
             <li className="list-group-item">Gender: {this.props.user.gender}</li>
             <li className="list-group-item">Height: {this.props.user.height} in.</li>
-            <li className="list-group-item">Weight: {this.props.user.weight} lb</li>
+            <li className="list-group-item">Weight: {this.props.user.weight} lbs</li>
           </ul>
         </CardBody>
         <CardFooter>
