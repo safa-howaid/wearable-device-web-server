@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const path = require("path");
+var cors = require("cors");
 const db = require("./database");
 
 // Start app
@@ -19,6 +20,17 @@ app.get("/api/", (req, res) => {
   return res.status(200).json({
     status: "success",
   });
+});
+
+// Resolve cross-origin request errors
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH, OPTIONS");
+  next();
 });
 
 // Add user router
