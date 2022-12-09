@@ -44,7 +44,7 @@ class HeartRateCard extends Component {
               View History
             </Button>
           </CardBody>
-          <Modal show={this.state.isOpen}>
+          <Modal show={this.state.isOpen} onHide={this.closeModal}>
             <Modal.Header closeButton>
               <Modal.Title>Calories Burned Data</Modal.Title>
             </Modal.Header>

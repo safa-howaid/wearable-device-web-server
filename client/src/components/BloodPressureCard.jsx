@@ -49,7 +49,7 @@ class BloodPressureCard extends Component {
               View History
             </Button>
           </CardBody>
-          <Modal show={this.state.isOpen}>
+          <Modal show={this.state.isOpen} onHide={this.closeModal}>
             <Modal.Header closeButton>
               <Modal.Title>Blood Pressure Data</Modal.Title>
             </Modal.Header>
@@ -60,7 +60,7 @@ class BloodPressureCard extends Component {
                   <div className="d-flex align-items-center ">
                     <p>
                       <strong>Timestamp:</strong> {new Date(data.timestamp).toLocaleString()} <br />
-                      <strong>Blood Pressure Systolic:</strong> {data.bloodPressureSystolic}
+                      <strong>Blood Pressure Systolic:</strong> {data.bloodPressureSystolic} <br />
                       <strong>Blood Pressure Diastolic:</strong> {data.bloodPressureDiastolic}
                     </p>
                   </div>

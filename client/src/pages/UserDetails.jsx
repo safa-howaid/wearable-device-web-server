@@ -65,8 +65,8 @@ class UserDetails extends Component {
           <HeartRateCard heartRate={user.heartRate} />
           <BloodPressureCard bloodPressure={user.bloodPressure} />
           <BodyTemperatureCard bodyTemperature={user.bodyTemperature} />
-          <CaloriesBurnedCard caloriesBurned={user.caloriesBurned} />
-          <SleepTimeCard sleepTime={user.sleepTime} />
+          {/* <CaloriesBurnedCard caloriesBurned={user.caloriesBurned} /> */}
+          {/* <SleepTimeCard sleepTime={user.sleepTime} /> */}
           <StepCountCard stepCount={user.stepCount} />
           <GpsLocationCard gpsLocation={user.gpsLocation} />
         </Wrapper>

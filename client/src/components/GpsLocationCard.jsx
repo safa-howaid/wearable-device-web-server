@@ -49,7 +49,7 @@ class GpsLocationCard extends Component {
               View History
             </Button>
           </CardBody>
-          <Modal show={this.state.isOpen}>
+          <Modal show={this.state.isOpen} onHide={this.closeModal}>
             <Modal.Header closeButton>
               <Modal.Title>Gps Location Data</Modal.Title>
             </Modal.Header>
@@ -60,7 +60,7 @@ class GpsLocationCard extends Component {
                   <div className="d-flex align-items-center ">
                     <p>
                       <strong>Timestamp:</strong> {new Date(data.timestamp).toLocaleString()} <br />
-                      <strong>Latitude:</strong> {data.latitude}
+                      <strong>Latitude:</strong> {data.latitude} <br />
                       <strong>Longitude:</strong> {data.longitude}
                     </p>
                   </div>
