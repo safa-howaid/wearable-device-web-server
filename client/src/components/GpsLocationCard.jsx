@@ -60,8 +60,8 @@ class GpsLocationCard extends Component {
                   <div className="d-flex align-items-center ">
                     <p>
                       <strong>Timestamp:</strong> {new Date(data.timestamp).toLocaleString()} <br />
-                      <strong>Latitude:</strong> {data.gpsLocation.latitude}
-                      <strong>Longitude:</strong> {data.gpsLocation.longitude}
+                      <strong>Latitude:</strong> {data.latitude}
+                      <strong>Longitude:</strong> {data.longitude}
                     </p>
                   </div>
                 );

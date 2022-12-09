@@ -60,8 +60,8 @@ class BloodPressureCard extends Component {
                   <div className="d-flex align-items-center ">
                     <p>
                       <strong>Timestamp:</strong> {new Date(data.timestamp).toLocaleString()} <br />
-                      <strong>Blood Pressure Systolic:</strong> {data.bloodPressure.bloodPressureSystolic}
-                      <strong>Blood Pressure Diastolic:</strong> {data.bloodPressure.bloodPressureDiastolic}
+                      <strong>Blood Pressure Systolic:</strong> {data.bloodPressureSystolic}
+                      <strong>Blood Pressure Diastolic:</strong> {data.bloodPressureDiastolic}
                     </p>
                   </div>
                 );
